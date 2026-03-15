@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  umbrel:
+    image: umbrel/umbrel:latest
+    container_name: umbrel
+    restart: always
+    privileged: true
+    ports:
+      - "7080:80" # Acesse via http://<IP-do-Servidor>:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/portainer/umbrel:/home/umbrel # Mude /home/usuario/umbrel para onde deseja salvar os dados
+    networks:
+      - umbrel_network
+
+networks:
+  umbrel_network:
+    driver: bridge
