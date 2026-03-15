@@ -1,18 +1,14 @@
-version: '3.8'
+version: "3"
 services:
   umbrel:
-    image: umbrel/umbrel:latest
+    image: dockur/umbrel:latest
     container_name: umbrel
-    restart: always
-    privileged: true
+    network_mode: bridge
     ports:
-      - "7080:80" # Acesse via http://<IP-do-Servidor>:8080
+      - 7080:80 # Acesse via http://IP-DO-SERVIDOR:8080
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /home/portainer/umbrel:/home/umbrel # Mude /home/usuario/umbrel para onde deseja salvar os dados
-    networks:
-      - umbrel_network
-
-networks:
-  umbrel_network:
-    driver: bridge
+      - /home/portainer/umbrel:/data # Altere para uma pasta real no seu servidor
+    environment:
+      - NGINX_PORT=80
+    restart: always
+    stop_grace_period: 1m
