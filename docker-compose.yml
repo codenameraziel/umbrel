@@ -6,7 +6,7 @@ services:
     container_name: umbrel
     restart: always
     ports:
-      - "7081:80"      # porta da dashboard (mudei para 7081 para não conflitar)
+      - "7081:80"      # porta da dashboard (mudei para 7081 para nao conflitar)
       - "7444:443"     # porta HTTPS interna (mudei para 7444)
     volumes:
       - /home/portainer/umbrel:/data
