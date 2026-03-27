@@ -11,5 +11,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock # Necessario para o Umbrel gerenciar seus apps
     environment:
       - NGINX_PORT=80
+      - TRUSTED_PROXIES=192.168.100.105
     restart: always
     stop_grace_period: 1m
