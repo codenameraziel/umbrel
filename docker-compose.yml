@@ -1,16 +1,16 @@
-version: "3"
+version: "3.7"
+
 services:
   umbrel:
-    image: dockurr/umbrel:latest
+    image: getumbrel/umbrel:latest
     container_name: umbrel
-    network_mode: bridge
+    restart: always
     ports:
-      - 7080:80
+      - "7081:80"      # porta da dashboard (mudei para 7081 para não conflitar)
+      - "7444:443"     # porta HTTPS interna (mudei para 7444)
     volumes:
       - /home/portainer/umbrel:/data
-      - /var/run/docker.sock:/var/run/docker.sock # Necessario para o Umbrel gerenciar seus apps
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - NGINX_PORT=80
-      - TRUSTED_PROXIES=192.168.100.105
-    restart: always
-    stop_grace_period: 1m
+      - TRUSTED_PROXIES=192.168.100.105   # IP do Caddy
+
