@@ -2,15 +2,12 @@ version: "3.7"
 
 services:
   umbrel:
-    image: getumbrel/umbrel:latest
+    build: .
     container_name: umbrel
     restart: always
     ports:
-      - "7081:80"      # porta da dashboard (mudei para 7081 para nao conflitar)
-      - "7444:443"     # porta HTTPS interna (mudei para 7444)
+      - "7081:80"
+      - "7444:443"
     volumes:
-      - /home/portainer/umbrel:/data
+      - ./umbrel-data:/data
       - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - TRUSTED_PROXIES=192.168.100.105   # IP do Caddy
-
